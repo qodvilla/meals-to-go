@@ -3,6 +3,8 @@ import styled from "styled-components/native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
+import open from "../../../../assets/open";
+import { Text } from 'react-native';
 
 const Title = styled.Text`
   color: ${(props) => props.theme.colors.text.primary};
@@ -21,8 +23,6 @@ const Info = styled.View`
 
 const Ratings = styled.View`
   flex-direction: row;
-  margin-top: ${(props) => props.theme.space[2]}
-  margin-bottom: ${(props) => props.theme.space[2]}
 `;
 
 const RestaurantCard = styled(Card)``;
@@ -31,10 +31,17 @@ const RestaurantCardCover = styled(Card.Cover)`
   margin: ${(props) => props.theme.space[3]};
 `;
 
+const RatingsAndIsOpen = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: ${(props) => props.theme.space[2]}
+  padding-bottom: ${(props) => props.theme.space[2]}
+`;
+
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = `Restaurant`,
-    icon = ``,
+    icon = `https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png`,
     photos = [
       `https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1575`,
     ],
@@ -51,11 +58,14 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <Info>
         <Title>{name}</Title>
-        <Ratings>
-          {ratingArray.map(() => (
-            <SvgXml xml={star} width="25" height="25" />
-          ))}
-        </Ratings>
+        <RatingsAndIsOpen>
+          <Ratings>
+            {ratingArray.map((nothing, i) => (
+              <SvgXml key={i} xml={star} width="25" height="25" />
+            ))}
+          </Ratings>
+          {isOpenNow && <SvgXml key={0} xml={open} width="25" height="25" />}
+        </RatingsAndIsOpen>
         <Address>{address}</Address>
       </Info>
     </RestaurantCard>
