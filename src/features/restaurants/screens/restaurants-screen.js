@@ -1,56 +1,35 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView} from 'react-native';
-import { Searchbar } from 'react-native-paper';
-import { colors } from '../../../utils/utils'
-import { RestaurantInfo } from '../components/restaurant-info.component';
+import React from "react";
+import styled from "styled-components/native";
+import { View, StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import { Searchbar } from "react-native-paper";
+import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
+const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight : 0;
+
+const SearchView = styled.View`
+  margin: ${props => props.theme.space[3]};
+`;
+
+const AppContainer = styled(SafeAreaView)`
+  flex: 1;
+  background-color: ${(props) => props.theme.colors.ui.primary};
+  paddingTop: ${statusBarHeight}px;
+`;
+
+const RestaurantInfoList = styled(View)`
+  flex: 1;
+  padding: ${props => props.theme.space[3]};
+`;
 
 export const RestaurantsScreen = () => {
-    return(
-        <SafeAreaView style={styles.container}>
-            <View style={styles.search}>
-                <Searchbar />
-            </View>
-            <View style={styles.RestaurantsList}>
-                <RestaurantInfo />
-            </View>
-        </SafeAreaView>
-    )
-}
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#16161a',
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
-    },
-    search: {
-        padding: 16
-    },
-    RestaurantsList: {
-        flex: 1,
-        padding: 16
-    },
-    RestaurantsListText: {
-        color: colors.paragraph,
-        fontWeight: 'bold'
-    },
-    headline: {
-        color: colors.headline,
-        fontWeight: 'bold',
-        textAlign: 'center'
-    }
-})
-
-
-
-
-
-
-
-
-
-
-
-
+  return (
+    <AppContainer>
+      <SearchView>
+        <Searchbar />
+      </SearchView>
+      <RestaurantInfoList>
+        <RestaurantInfoCard />
+      </RestaurantInfoList>
+    </AppContainer>
+  );
+};
