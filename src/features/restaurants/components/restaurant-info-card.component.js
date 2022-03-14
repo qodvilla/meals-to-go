@@ -4,7 +4,8 @@ import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
-import { Text } from 'react-native';
+import { Text, Image } from 'react-native';
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 const Title = styled.Text`
   color: ${(props) => props.theme.colors.text.primary};
@@ -34,8 +35,9 @@ const RestaurantCardCover = styled(Card.Cover)`
 const RatingsAndIsOpen = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding-top: ${(props) => props.theme.space[2]}
-  padding-bottom: ${(props) => props.theme.space[2]}
+  padding-top: ${(props) => props.theme.space[2]};
+  padding-bottom: ${(props) => props.theme.space[2]};
+  align-items: center;
 `;
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
@@ -48,7 +50,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     address = `111 Solly Sachs House`,
     isOpenNow = true,
     rating = 3.5,
-    isClosedTemporarily = false,
+    isClosedTemporarily = true,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.round(rating)));
@@ -65,6 +67,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             ))}
           </Ratings>
           {isOpenNow && <SvgXml key={0} xml={open} width="25" height="25" />}
+          <Spacer size="large" position="right">
+            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+          </Spacer>
         </RatingsAndIsOpen>
         <Address>{address}</Address>
       </Info>
