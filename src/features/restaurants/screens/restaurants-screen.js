@@ -7,18 +7,18 @@ import { RestaurantInfoCard } from "../components/restaurant-info-card.component
 const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight : 0;
 
 const SearchView = styled.View`
-  margin: ${props => props.theme.space[3]};
+  margin: ${(props) => props.theme.space[3]};
 `;
 
 const AppContainer = styled(SafeAreaView)`
   flex: 1;
   background-color: ${(props) => props.theme.colors.ui.primary};
-  paddingTop: ${statusBarHeight}px;
+  padding-top: ${statusBarHeight}px;
 `;
 
 const RestaurantInfoList = styled(View)`
   flex: 1;
-  padding: ${props => props.theme.space[3]};
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 export const RestaurantsScreen = () => {

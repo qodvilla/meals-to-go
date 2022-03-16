@@ -1,49 +1,19 @@
 import React from "react";
-import styled from "styled-components/native";
-import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
-
-const Address = styled.Text`
-  font-family: ${(props) => props.theme.fonts.body}
-  font-size: ${(props) => props.theme.fontSizes.caption}
-`;
-
-const Info = styled.View`
-  margin: ${(props) => props.theme.space[3]};
-`;
-
-const Ratings = styled.View`
-  flex-direction: row;
-`;
-
-const RestaurantCard = styled(Card)``;
-
-const RestaurantCardCover = styled(Card.Cover)`
-  margin: ${(props) => props.theme.space[3]};
-`;
-
-const Icon = styled.Image`
-  height: 15px;
-  width: 15px;
-`
-
-const Section = styled.View`
-  flex-direction: row;
-  padding-top: ${(props) => props.theme.space[2]};
-  padding-bottom: ${(props) => props.theme.space[2]};
-  align-items: center;
-`;
-
-const SectionRight = styled.View`
-  flex-direction: row;
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
-`;
+import {
+  RestaurantCard,
+  RestaurantCardCover,
+  Info,
+  Section,
+  SectionRight,
+  Ratings,
+  Icon,
+  Address,
+} from "./restaurant-info-card.styles";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
