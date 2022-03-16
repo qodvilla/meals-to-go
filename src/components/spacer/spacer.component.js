@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import React from 'react';
+import styled, { useTheme } from 'styled-components/native';
 
 
 
@@ -17,15 +18,22 @@ const positionVariants = {
 
 const getVariant = (position, size, theme) => {
     const sizeIndex = sizeVariants[size];
-    console.log(`${positionVariants[position]}:${theme.space[sizeIndex]}`);
     return `${positionVariants[position]}:${theme.space[sizeIndex]}`
 }
 
+const SpacerView = styled.View`
+    ${({variant}) => variant}
+`
+// the variant ^ is essentially a styling text.
 
-export const Spacer = styled.View`
-    ${({position, size, theme}) => getVariant(position, size, theme)}
-`;
-
+export const Spacer = ({position, size, children}) => {
+    const theme = useTheme();
+    // calculating the variant ahead of time:
+    const variant = getVariant(position, size, theme);
+    return (<SpacerView variant={variant}>
+        {children}
+    </SpacerView>)
+}
 
 Spacer.defaultProps = {
     position: 'top',
