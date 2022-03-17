@@ -1,5 +1,5 @@
-import styled from 'styled-components/native';
-import { Card } from 'react-native-paper';
+import styled from "styled-components/native";
+import { Card } from "react-native-paper";
 
 export const Address = styled.Text`
   font-family: ${(props) => props.theme.fonts.body}
@@ -11,7 +11,9 @@ export const Info = styled.View`
 export const Ratings = styled.View`
   flex-direction: row;
 `;
-export const RestaurantCard = styled(Card)``;
+export const RestaurantCard = styled(Card)`
+  margin-bottom: ${({theme}) => theme.space[3]}
+`;
 export const RestaurantCardCover = styled(Card.Cover)`
   margin: ${(props) => props.theme.space[3]};
 `;
