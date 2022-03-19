@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { View, FlatList, SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import {
+  View,
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+} from "react-native";
 import { Searchbar, ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
@@ -37,13 +43,13 @@ export const RestaurantsScreen = () => {
       </SearchView>
       {restaurantContext.isLoading ? (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator animating={true} size="large"color="#2cb67d" />
+          <ActivityIndicator animating={true} size="large" color="#2cb67d" />
         </View>
       ) : (
         <RestaurantCardList
           data={restaurantContext.restaurants}
-          renderItem={() => {
-            return <RestaurantInfoCard />;
+          renderItem={({ item }) => {
+            return <RestaurantInfoCard restaurant={item}/>;
           }}
           keyExtractor={(item) => item.name}
         />
@@ -52,10 +58,9 @@ export const RestaurantsScreen = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
   loaderContainer: {
     flex: 1,
-    justifyContent: "center"
-  }
-})
+    justifyContent: "center",
+  },
+});
