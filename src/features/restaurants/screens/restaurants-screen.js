@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import {
   View,
@@ -7,15 +7,12 @@ import {
   StatusBar,
   StyleSheet,
 } from "react-native";
-import { Searchbar, ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
+import { Search } from "../components/search.component";
 
 const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight : 0;
-
-const SearchView = styled.View`
-  margin: ${(props) => props.theme.space[3]};
-`;
 
 const AppContainer = styled(SafeAreaView)`
   flex: 1;
@@ -38,9 +35,7 @@ export const RestaurantsScreen = () => {
   const restaurantContext = useContext(RestaurantContext);
   return (
     <AppContainer>
-      <SearchView>
-        <Searchbar />
-      </SearchView>
+      <Search />
       {restaurantContext.isLoading ? (
         <View style={styles.loaderContainer}>
           <ActivityIndicator animating={true} size="large" color="#2cb67d" />
