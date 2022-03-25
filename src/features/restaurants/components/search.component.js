@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { LocationsContext } from "../../../services/locations/locations.context";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
@@ -10,6 +10,7 @@ const SearchView = styled.View`
 export const Search = () => {
   const { keyword, retrieveLocationData } = useContext(LocationsContext);
   const [location, setLocation] = useState(keyword); //setting the default location.
+
   return (
     <SearchView>
       <Searchbar

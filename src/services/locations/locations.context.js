@@ -12,33 +12,34 @@ export const LocationsContextProvider = ({ children }) => {
   const [locationData, setLocationData] = useState(null);
   const [keyword, setKeyword] = useState("San Francisco");
 
-  const retrieveLocationData = (location = "Chicago") => {
+  const retrieveLocationData = (location) => {
     // if location filter is an empty string
     setIsLoading(true);
-    if (!location.length) {
-        setIsLoading(false);
-        return;
-    
-    }
     setKeyword(location);
+  };
+
+  useEffect(() => {
+    console.log("Running useEffect for no reason!")
+    if (!keyword.length) {
+      setIsLoading(false);
+      return;
+    }
+
     setTimeout(() => {
       setIsLoading(true);
-      locationRequest(location)
+      locationRequest(keyword)
         .then(locationRequestDataTransform)
         .then((data) => {
           setIsLoading(false);
-          setLocationData(data);
-          console.log("It works");
-          console.log(data);
+          setLocationData(data); //we get this after search submit.
         })
         .catch((err) => {
           setIsLoading(false);
           setError(err);
-          console.log("Something went wrong.");
-          console.log(err);
         });
-    }, 3000);
-  };
+    });
+  }, [keyword]);
+
   return (
     <LocationsContext.Provider
       value={{
@@ -46,7 +47,7 @@ export const LocationsContextProvider = ({ children }) => {
         isLoading,
         error,
         locationData,
-        keyword
+        keyword,
       }}
     >
       {children}

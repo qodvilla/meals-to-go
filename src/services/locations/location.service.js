@@ -19,7 +19,7 @@ export const locationRequestDataTransform = (data) => {
   const { geometry } = locationInfo;
   const { location } = geometry;
   const { lat, lng } = location;
-  return { lat, lng };
+  return `${lat},${lng}`;
 };
 
 
