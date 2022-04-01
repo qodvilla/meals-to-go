@@ -19,7 +19,7 @@ export const LocationsContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("Running useEffect for no reason!")
+    console.log("Running useEffect for: Component Did Mount!")
     if (!keyword.length) {
       setIsLoading(false);
       return;

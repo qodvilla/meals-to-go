@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  TouchableOpacity
 } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -27,7 +28,7 @@ const RestaurantCardList = styled(FlatList).attrs({
 })``;
 
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   const restaurantContext = useContext(RestaurantContext);
   return (
     <AppContainer>
@@ -40,7 +41,11 @@ export const RestaurantsScreen = () => {
         <RestaurantCardList
           data={restaurantContext.restaurants}
           renderItem={({ item }) => {
-            return <RestaurantInfoCard restaurant={item}/>;
+            return (
+              <TouchableOpacity onPress={() => {navigation.navigate("RestaurantDetails")}}>
+                <RestaurantInfoCard restaurant={item}/>
+              </TouchableOpacity>
+            );
           }}
           keyExtractor={(item) => item.name}
         />
