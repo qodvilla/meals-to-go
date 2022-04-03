@@ -9,7 +9,6 @@ export const RestaurantContext = createContext(); //creates a global Context
 
 export const RestaurantContextProvider = ({ children }) => {
   // this will wrap components, thus providing them a certain state.
-  console.log("Rendering Restaurants Context")
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

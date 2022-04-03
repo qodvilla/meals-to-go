@@ -3,15 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { RestaurantsNavigator } from "./restaurants.navigator";
-
-function MapScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>O! Our Map Screen Here!</Text>
-      <Ionicons name="fast-food-sharp" size={24} color="black" />
-    </View>
-  );
-}
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 function SettingsScreen() {
   return (
